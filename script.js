@@ -33,24 +33,46 @@ function initGalleries() {
         }
     });
     
-    // Initialize PhotoSwipe Lightbox
-    initPhotoSwipe();
+    // Initialize PhotoSwipe Lightbox after galleries are loaded
+    setTimeout(() => {
+        initPhotoSwipe();
+    }, 100);
 }
 
 // Initialize PhotoSwipe with touch support
 function initPhotoSwipe() {
+    // Destroy existing instance if any
+    if (lightbox) {
+        lightbox.destroy();
+    }
+    
     lightbox = new PhotoSwipeLightbox({
         gallery: '.gallery-grid',
         children: '.gallery-item a',
-        photoSwipe: {
-            bgOpacity: 0.95
+        pswpModule: () => import('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/photoswipe.esm.min.js'),
+        bgOpacity: 0.95,
+        showHideAnimationType: 'zoom',
+        zoom: true,
+        pinchToClose: true,
+        closeOnVerticalDrag: true,
+        tapAction: {
+            main: 'toggleControls',
+            secondary: 'zoom-or-close'
+        },
+        doubleTapAction: 'zoom',
+        wheelToZoom: true,
+        padding: {
+            top: 20,
+            bottom: 80,
+            left: 10,
+            right: 10
         }
     });
     
     lightbox.on('change', () => {
-        const slide = lightbox.pswp.currSlide;
-        if (slide) {
-            // Enable pinch zoom
+        if (lightbox.pswp && lightbox.pswp.currSlide) {
+            const slide = lightbox.pswp.currSlide;
+            // Reset zoom level on change
             slide.zoomLevel = Math.max(slide.fitWidth, slide.fitHeight, 1);
         }
     });
@@ -235,6 +257,6 @@ if ('IntersectionObserver' in window) {
 }
 
 // Console welcome message
-console.log('%c🎓 SMKS Kesehatan SDM Sumedang - Galeri Foto', 'color: #0078D4; font-size: 20px; font-weight: bold;');
-console.log('%c✨ Interactive Photo Gallery with Fluent Design Theme', 'color: #106EBE; font-size: 14px;');
-console.log('%c📸 Total Sections: ' + gallerySections.length, 'color: #00BCF2; font-size: 12px;');
+console.log('%c🎓 SMKS Kesehatan SDM Sumedang - Galeri Foto', 'color: #667eea; font-size: 20px; font-weight: bold;');
+console.log('%c✨ Interactive Photo Gallery with Glassmorphism Theme', 'color: #f093fb; font-size: 14px;');
+console.log('%c📸 Total Sections: ' + gallerySections.length, 'color: #ffffff; font-size: 12px;');
