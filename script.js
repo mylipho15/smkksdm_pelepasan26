@@ -17,22 +17,14 @@ const gallerySections = [
     { id: 'gallery-pentutupan', folder: '15_Paturay-Penutupan', count: 33, title: 'Penutupan Paturay Tineung' }
 ];
 
-// All images array for lightbox
-let allImages = [];
-let currentImageIndex = 0;
+// PhotoSwipe instance
+let lightbox;
 
 // DOM Elements
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxCaption = document.getElementById('lightboxCaption');
-const lightboxCounter = document.getElementById('lightboxCounter');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navMenu = document.getElementById('navMenu');
 
-// Initialize galleries
+// Initialize galleries and PhotoSwipe
 function initGalleries() {
     gallerySections.forEach(section => {
         const galleryElement = document.getElementById(section.id);
@@ -40,6 +32,30 @@ function initGalleries() {
             loadGalleryImages(galleryElement, section.folder, section.count, section.title);
         }
     });
+    
+    // Initialize PhotoSwipe Lightbox
+    initPhotoSwipe();
+}
+
+// Initialize PhotoSwipe with touch support
+function initPhotoSwipe() {
+    lightbox = new PhotoSwipeLightbox({
+        gallery: '.gallery-grid',
+        children: '.gallery-item a',
+        photoSwipe: {
+            bgOpacity: 0.95
+        }
+    });
+    
+    lightbox.on('change', () => {
+        const slide = lightbox.pswp.currSlide;
+        if (slide) {
+            // Enable pinch zoom
+            slide.zoomLevel = Math.max(slide.fitWidth, slide.fitHeight, 1);
+        }
+    });
+    
+    lightbox.init();
 }
 
 // Load gallery images
@@ -53,67 +69,16 @@ function loadGalleryImages(container, folder, count, title) {
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
         galleryItem.innerHTML = `
-            <img src="${imagePath}" alt="${title} - Foto ${i}" loading="lazy" onerror="this.style.display='none'">
-            <div class="gallery-overlay">
-                <p>${title} - ${i}</p>
-            </div>
+            <a href="${imagePath}" data-pswp-width="1920" data-pswp-height="1080" target="_blank">
+                <img src="${imagePath}" alt="${title} - Foto ${i}" loading="lazy" onerror="this.style.display='none'">
+                <div class="gallery-overlay">
+                    <p>${title} - ${i}</p>
+                </div>
+            </a>
         `;
         
-        galleryItem.addEventListener('click', () => openLightbox(imagePath, `${title} - Foto ${i}`, folder, count, i));
         container.appendChild(galleryItem);
     }
-}
-
-// Open lightbox
-function openLightbox(src, caption, folder, count, index) {
-    // Build all images array for this section
-    allImages = [];
-    for (let i = 1; i <= count; i++) {
-        const paddedNumber = String(i).padStart(2, '0');
-        allImages.push({
-            src: `images/${folder}/${folder}_${paddedNumber}.jpg`,
-            caption: `${caption.split(' - ')[0]} - Foto ${i}`,
-            index: i
-        });
-    }
-    
-    currentImageIndex = index - 1;
-    showLightboxImage(currentImageIndex);
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Show lightbox image
-function showLightboxImage(index) {
-    if (index < 0 || index >= allImages.length) return;
-    
-    const img = allImages[index];
-    lightboxImage.src = img.src;
-    lightboxCaption.textContent = img.caption;
-    lightboxCounter.textContent = `${index + 1} / ${allImages.length}`;
-    currentImageIndex = index;
-}
-
-// Close lightbox
-function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = 'auto';
-    setTimeout(() => {
-        lightboxImage.src = '';
-    }, 300);
-}
-
-// Navigate lightbox
-function navigateLightbox(direction) {
-    let newIndex = currentImageIndex + direction;
-    
-    if (newIndex < 0) {
-        newIndex = allImages.length - 1;
-    } else if (newIndex >= allImages.length) {
-        newIndex = 0;
-    }
-    
-    showLightboxImage(newIndex);
 }
 
 // Mobile menu toggle
@@ -170,38 +135,8 @@ function handleActiveNav() {
     });
 }
 
-// Keyboard navigation for lightbox
-function handleKeyboardNavigation(e) {
-    if (!lightbox.classList.contains('active')) return;
-    
-    switch(e.key) {
-        case 'Escape':
-            closeLightbox();
-            break;
-        case 'ArrowLeft':
-            navigateLightbox(-1);
-            break;
-        case 'ArrowRight':
-            navigateLightbox(1);
-            break;
-    }
-}
-
 // Event Listeners
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
-lightboxNext.addEventListener('click', () => navigateLightbox(1));
 mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-// Close lightbox when clicking outside the image
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
-        closeLightbox();
-    }
-});
-
-// Keyboard events
-document.addEventListener('keydown', handleKeyboardNavigation);
 
 // Close mobile menu when clicking nav links
 document.querySelectorAll('.nav-link').forEach(link => {
@@ -255,7 +190,7 @@ function observeElements() {
         rootMargin: '0px 0px -50px 0px'
     });
     
-    document.querySelectorAll('.glass-card, .gallery-item').forEach(el => {
+    document.querySelectorAll('.fluent-card, .gallery-item').forEach(el => {
         el.classList.add('reveal');
         observer.observe(el);
     });
@@ -300,6 +235,6 @@ if ('IntersectionObserver' in window) {
 }
 
 // Console welcome message
-console.log('%c🎓 SMKS Kesehatan SDM Sumedang - Galeri Foto', 'color: #667eea; font-size: 20px; font-weight: bold;');
-console.log('%c✨ Interactive Photo Gallery with Glassmorphism Theme', 'color: #764ba2; font-size: 14px;');
-console.log('%c📸 Total Sections: ' + gallerySections.length, 'color: #f093fb; font-size: 12px;');
+console.log('%c🎓 SMKS Kesehatan SDM Sumedang - Galeri Foto', 'color: #0078D4; font-size: 20px; font-weight: bold;');
+console.log('%c✨ Interactive Photo Gallery with Fluent Design Theme', 'color: #106EBE; font-size: 14px;');
+console.log('%c📸 Total Sections: ' + gallerySections.length, 'color: #00BCF2; font-size: 12px;');

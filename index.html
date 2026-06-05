@@ -2,10 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Galeri Foto Sekolah - SMKS Kesehatan SDM Sumedang</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PhotoSwipe CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/photoswipe.min.css">
 </head>
 <body>
     <!-- Background Elements -->
@@ -18,7 +20,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar glass">
+    <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
                 <h1>SMKS Kesehatan SDM Sumedang</h1>
@@ -65,7 +67,7 @@
         <!-- Beranda Section -->
         <section id="beranda" class="section hero-section">
             <div class="container">
-                <div class="hero-content glass-card">
+                <div class="hero-content fluent-card">
                     <h2>Selamat Datang di Galeri Foto</h2>
                     <p class="subtitle">SMKS Kesehatan SDM Sumedang</p>
                     <div class="school-info">
@@ -99,7 +101,7 @@
         <!-- Prakata Section -->
         <section id="prakata" class="section">
             <div class="container">
-                <div class="section-header glass-card">
+                <div class="section-header fluent-card">
                     <h2>Prakata Pelaksana Tugas Kepala Sekolah</h2>
                     <div class="speaker-info">
                         <div class="speaker-avatar">Y</div>
@@ -109,7 +111,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-card glass-card">
+                <div class="content-card fluent-card">
                     <p>Assalamu'alaikum Warahmatullahi Wabarakatuh,</p>
                     <p>Puji syukur kita panjatkan ke hadirat Allah SWT atas rahmat dan karunia-Nya, sehingga kita dapat melaksanakan kegiatan Sumpah Lantik dan Paturay Tineung dengan lancar dan penuh khidmat.</p>
                     <p>Kegiatan ini merupakan momen penting dalam perjalanan akademik siswa-siswi SMKS Kesehatan SDM Sumedang. Sumpah Lantik menandai komitmen para siswa dalam menjalankan profesi kesehatan dengan integritas dan dedikasi tinggi. Sementara Paturay Tineung menjadi ajang perpisahan dan pelepasan siswa kelas XII yang telah menyelesaikan pendidikannya.</p>
@@ -122,7 +124,7 @@
         <!-- Sumpah Lantik Sections -->
         <section id="sumpah-lantik" class="section event-section">
             <div class="container">
-                <div class="section-title glass-card">
+                <div class="section-title fluent-card">
                     <h2>🎓 Sumpah Lantik</h2>
                     <p>Upacara sumpah lantik siswa SMKS Kesehatan SDM Sumedang</p>
                 </div>
@@ -131,7 +133,7 @@
 
         <section id="mockup" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Mock-Up</h3>
                     <p>Persiapan dan mock-up acara Sumpah Lantik</p>
                 </div>
@@ -141,7 +143,7 @@
 
         <section id="pembukaan-sl" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Pembukaan</h3>
                     <p>Momen pembukaan acara Sumpah Lantik</p>
                 </div>
@@ -151,7 +153,7 @@
 
         <section id="prosesi-angkat-sumpah" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Prosesi Angkat Sumpah</h3>
                     <p>Prosesi pengucapan sumpah oleh siswa</p>
                 </div>
@@ -161,7 +163,7 @@
 
         <section id="pembagian-raport" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Pembagian Raport & Pengalungan</h3>
                     <p>Momen pembagian raport dan pengalungan</p>
                 </div>
@@ -171,7 +173,7 @@
 
         <section id="penutupan-sl" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Penutupan</h3>
                     <p>Acara penutupan Sumpah Lantik</p>
                 </div>
@@ -181,7 +183,7 @@
 
         <section id="foto-bersama" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Prosesi Foto Bersama</h3>
                     <p>Dokumentasi foto bersama peserta dan panitia</p>
                 </div>
@@ -191,7 +193,7 @@
 
         <section id="siswa-terbaik" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Penampilan Siswa Terbaik</h3>
                     <p>Penghargaan siswa jurusan terbaik</p>
                 </div>
@@ -202,7 +204,7 @@
         <!-- Paturay Tineung Sections -->
         <section id="paturay-tineung" class="section event-section">
             <div class="container">
-                <div class="section-title glass-card">
+                <div class="section-title fluent-card">
                     <h2>🎉 Paturay Tineung</h2>
                     <p>Acara perpisahan dan pelepasan siswa kelas XII</p>
                 </div>
@@ -211,7 +213,7 @@
 
         <section id="pembukaan-pt" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Pembukaan</h3>
                     <p>Momen pembukaan acara Paturay Tineung</p>
                 </div>
@@ -221,7 +223,7 @@
 
         <section id="pembacaan-puisi" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Pembacaan Puisi</h3>
                     <p>Penampilan pembacaan puisi oleh siswa</p>
                 </div>
@@ -231,7 +233,7 @@
 
         <section id="prosesi-sungkem" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Prosesi Sungkem</h3>
                     <p>Tradisi sungkem sebagai bentuk bakti kepada guru dan orang tua</p>
                 </div>
@@ -241,7 +243,7 @@
 
         <section id="purna-tugas" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Purna Tugas Kepala Sekolah</h3>
                     <p>Hj. Dewi Sugiarti, Dra., M.M.</p>
                 </div>
@@ -251,7 +253,7 @@
 
         <section id="penghargaan-siswa" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Penghargaan Siswa</h3>
                     <p>Pemberian penghargaan kepada siswa berprestasi</p>
                 </div>
@@ -261,7 +263,7 @@
 
         <section id="pelepasan" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Penampilan & Pelepasan Kelas XII</h3>
                     <p>Momen pelepasan siswa kelas XII</p>
                 </div>
@@ -271,7 +273,7 @@
 
         <section id="penampilan-x" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Penampilan Kelas X</h3>
                     <p>Penampilan spesial dari siswa kelas X</p>
                 </div>
@@ -281,7 +283,7 @@
 
         <section id="pentutupan" class="section gallery-section">
             <div class="container">
-                <div class="gallery-header glass-card">
+                <div class="gallery-header fluent-card">
                     <h3>Penutupan</h3>
                     <p>Acara penutupan Paturay Tineung</p>
                 </div>
@@ -290,20 +292,44 @@
         </section>
     </main>
 
-    <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose">&times;</button>
-        <button class="lightbox-nav prev" id="lightboxPrev">&#10094;</button>
-        <button class="lightbox-nav next" id="lightboxNext">&#10095;</button>
-        <div class="lightbox-content">
-            <img src="" alt="Foto Galeri" id="lightboxImage">
+    <!-- PhotoSwipe Lightbox -->
+    <div class="pswp" id="photoswipe" tabindex="-1">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Tutup (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Bagikan"></button>
+                    <button class="pswp__button pswp__button--fs" title="Layar Penuh"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
         </div>
-        <div class="lightbox-caption" id="lightboxCaption"></div>
-        <div class="lightbox-counter" id="lightboxCounter"></div>
     </div>
 
     <!-- Footer -->
-    <footer class="glass-footer">
+    <footer class="fluent-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -331,6 +357,9 @@
         </div>
     </footer>
 
+    <!-- PhotoSwipe JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/photoswipe.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.3/photoswipe-lightbox.umd.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
